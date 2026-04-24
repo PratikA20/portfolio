@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratik Acharya | Computer Science Student</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1b3a5c;
+      --teal:   #2a7f7f;
+      --light:  #f4f7fb;
+      --white:  #ffffff;
+      --grey:   #555;
+      --border: #dde3ed;
+      --tag-bg: #e8f0fb;
+      --tag-fg: #1b3a5c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--light);
+      color: var(--grey);
+      line-height: 1.65;
+    }
+
+    /* ââ Nav âââââââââââââââââââââââââââââââ */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2rem; height: 56px;
+    }
+    nav .logo { color: #fff; font-weight: 700; font-size: 1.05rem; letter-spacing: .5px; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    nav a:hover { color: #fff; }
+
+    /* ââ Hero ââââââââââââââââââââââââââââââ */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a5298 100%);
+      color: #fff; text-align: center;
+      padding: 5rem 1.5rem 4rem;
+    }
+    .avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; font-weight: 700; color: #fff;
+      margin: 0 auto 1.4rem;
+      border: 3px solid rgba(255,255,255,.3);
+    }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: .4rem; }
+    .hero p.subtitle {
+      font-size: 1.05rem; opacity: .85; margin-bottom: 1.8rem;
+      max-width: 560px; margin-left: auto; margin-right: auto;
+    }
+    .hero-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: .55rem 1.4rem; border-radius: 6px;
+      font-size: .9rem; font-weight: 600; text-decoration: none; transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-white  { background: #fff; color: var(--navy); }
+    .btn-outline { border: 2px solid rgba(255,255,255,.7); color: #fff; }
+
+    /* ââ Sections ââââââââââââââââââââââââââ */
+    section { padding: 3.5rem 1.5rem; max-width: 860px; margin: 0 auto; }
+    section + section { padding-top: 2rem; }
+
+    h2.section-title {
+      font-size: 1.35rem; color: var(--navy);
+      border-left: 4px solid var(--teal); padding-left: .75rem;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ââ About âââââââââââââââââââââââââââââ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem 1.4rem;
+    }
+    .about-card h3 { color: var(--navy); font-size: .95rem; margin-bottom: .5rem; }
+    .about-card p  { font-size: .88rem; }
+
+    /* ââ Skills ââââââââââââââââââââââââââââ */
+    .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+    .skill-group {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem;
+    }
+    .skill-group h3 { color: var(--teal); font-size: .85rem; text-transform: uppercase; letter-spacing: .8px; margin-bottom: .8rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag {
+      background: var(--tag-bg); color: var(--tag-fg);
+      font-size: .78rem; font-weight: 600;
+      padding: .25rem .65rem; border-radius: 20px;
+    }
+
+    /* ââ Projects ââââââââââââââââââââââââââ */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+    .project-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.4rem; display: flex; flex-direction: column; gap: .6rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .project-card:hover { box-shadow: 0 6px 20px rgba(27,58,92,.12); transform: translateY(-3px); }
+    .project-card h3 { color: var(--navy); font-size: 1rem; }
+    .project-card p  { font-size: .87rem; flex: 1; }
+    .project-card .tech { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .project-card a {
+      align-self: flex-start; color: var(--teal); font-size: .85rem; font-weight: 600;
+      text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s;
+    }
+    .project-card a:hover { border-color: var(--teal); }
+
+    /* ââ Experience ââââââââââââââââââââââââ */
+    .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+    .tl-item {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem 1.4rem;
+      border-left: 4px solid var(--teal);
+    }
+    .tl-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .tl-header h3 { color: var(--navy); font-size: .97rem; }
+    .tl-date { font-size: .8rem; color: #999; white-space: nowrap; }
+    .tl-company { font-size: .85rem; color: var(--teal); margin-bottom: .5rem; }
+    .tl-item ul { padding-left: 1.1rem; font-size: .87rem; display: flex; flex-direction: column; gap: .3rem; }
+
+    /* ââ Contact âââââââââââââââââââââââââââ */
+    .contact-box {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2rem; text-align: center;
+    }
+    .contact-box p { margin-bottom: 1.2rem; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1.2rem; border-radius: 6px; font-size: .88rem; font-weight: 600;
+      text-decoration: none; background: var(--navy); color: #fff; transition: opacity .2s;
+    }
+    .contact-link:hover { opacity: .85; }
+
+    /* ââ Footer ââââââââââââââââââââââââââââ */
+    footer {
+      text-align: center; padding: 1.5rem; font-size: .8rem;
+      color: #aaa; border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">Pratik Acharya</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="avatar">PA</div>
+  <h1>Pratik Acharya</h1>
+  <p class="subtitle">Computer Science Student at the University of West London &mdash; looking for an Industrial Placement or Summer Internship.</p>
+  <div class="hero-links">
+    <a href="https://github.com/PratikA20" target="_blank" class="btn btn-white">GitHub</a>
+    <a href="https://www.linkedin.com/in/pratik-acharya-4850a2224/" target="_blank" class="btn btn-outline">LinkedIn</a>
+    <a href="mailto:pratikacharya2020@gmail.com" class="btn btn-outline">Email Me</a>
+  </div>
+</div>
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <p style="margin-bottom:1.4rem">
+    I am a first-year Computer Science student at UWL with a BTEC in Computing at triple-Distinction level.
+    For the past three years I have worked at BP alongside my studies &mdash; first as a Customer Service Assistant,
+    then promoted to Senior Sales Operative &mdash; which has given me real workplace habits that most students
+    at this stage do not have yet. I build small projects in my spare time to keep practising what I learn in lectures,
+    and I am actively looking for a placement where I can do real work and grow quickly.
+  </p>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>&#127891; Education</h3>
+      <p>BSc (Hons) Computer Science with Industrial Placement &mdash; University of West London (2024&ndash;present)</p>
+    </div>
+    <div class="about-card">
+      <h3>&#128188; Work</h3>
+      <p>Senior Sales Operative at BP since 2023. Customer Service Assistant from May 2022.</p>
+    </div>
+    <div class="about-card">
+      <h3>&#128205; Location</h3>
+      <p>Based in London, UK &mdash; right to work as a British national.</p>
+    </div>
+    <div class="about-card">
+      <h3>&#128197; Availability</h3>
+      <p>Available for placement from June 2025. Open to full-time and part-time internship roles.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skill-groups">
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Frameworks &amp; Tools</h3>
+      <div class="tags">
+        <span class="tag">Bootstrap</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Concepts</h3>
+      <div class="tags">
+        <span class="tag">OOP</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Database Design</span>
+        <span class="tag">Version Control</span>
+        <span class="tag">Responsive Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <h3>Personal Portfolio Website</h3>
+      <p>This site &mdash; built from scratch without any templates. Responsive, mobile-friendly, and passes Lighthouse accessibility checks. Helped me get confident with CSS layout (flexbox and grid) and thinking about user experience.</p>
+      <div class="tech">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+      <a href="https://github.com/PratikA20/portfolio" target="_blank">View on GitHub &rarr;</a>
+    </div>
+    <div class="project-card">
+      <h3>Degree Grade Calculator</h3>
+      <p>A command-line Python tool that takes in module marks and credit weightings and calculates your weighted average and current degree classification. Built it because I actually needed it during results week, then added input validation after a friend found a bug.</p>
+      <div class="tech">
+        <span class="tag">Python</span>
+      </div>
+      <a href="https://github.com/PratikA20/grade-calculator" target="_blank">View on GitHub &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2 class="section-title">Work Experience</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-header">
+        <h3>Senior Sales Operative (SSO)</h3>
+        <span class="tl-date">2023 &ndash; Present</span>
+      </div>
+      <p class="tl-company">BP</p>
+      <ul>
+        <li>Promoted after a year on site; responsible for end-of-shift cash reconciliation, stock checks, and covering the manager when needed</li>
+        <li>Trained and mentored two new Customer Service Assistants through their inductions</li>
+      </ul>
+    </div>
+    <div class="tl-item">
+      <div class="tl-header">
+        <h3>Customer Service Assistant</h3>
+        <span class="tl-date">May 2022 &ndash; 2023</span>
+      </div>
+      <p class="tl-company">BP</p>
+      <ul>
+        <li>Managed fuel, retail, and lottery transactions on a busy forecourt</li>
+        <li>Completed this role while studying full-time for my BTEC &mdash; built strong time management habits</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="contact-box">
+    <p>I am actively looking for placement and internship opportunities starting from <strong>June 2025</strong>. Feel free to reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:pratikacharya2020@gmail.com" class="contact-link">&#9993; pratikacharya2020@gmail.com</a>
+      <a href="https://www.linkedin.com/in/pratik-acharya-4850a2224/" target="_blank" class="contact-link">LinkedIn</a>
+      <a href="https://github.com/PratikA20" target="_blank" class="contact-link">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Pratik Acharya &mdash; Built from scratch with HTML, CSS &amp; JavaScript
+</footer>
+
+</body>
+</html>
